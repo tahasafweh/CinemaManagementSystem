@@ -78,6 +78,7 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
 
         // Make the frame visible
         jframe.setVisible(true);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     @Override
     public void valueChanged(ListSelectionEvent e) {

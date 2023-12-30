@@ -6,43 +6,53 @@ import java.awt.event.ActionListener;
 public class ManageAccount extends JFrame{
     JFrame jframe = new JFrame("Manage Account");
     User user;
+    String newUserName;
+    String newAccountDetails;
     public ManageAccount(User user) {
         this.user = user;
     }
     public void run() {
-        jframe.setLayout(new GridLayout(3, 2));
+        jframe.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // padding
         JLabel username = new JLabel("Username");
-        jframe.add(username);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        jframe.add(username, gbc);
         JLabel usernameField = new JLabel(user.getUsername());
-        jframe.add(usernameField);
+        gbc.gridy = 1;
+        jframe.add(usernameField, gbc);
         JLabel accountDetails = new JLabel("Account Details");
-        jframe.add(accountDetails);
+        gbc.gridy = 2;
+        jframe.add(accountDetails,gbc);
         JLabel accountDetailsField = new JLabel(user.getAccountDetails());
-        jframe.add(accountDetailsField);
+        gbc.gridy = 3;
+        jframe.add(accountDetailsField, gbc);
 
         JButton edit = new JButton("Edit");
+        edit.setFont(new Font("Arial", Font.BOLD, 14));
+        gbc.gridy = 4;
 
-        // Set bounds for the button (x, y, width, height)
-        edit.setBounds(50, 50, 200, 30);
-
-        jframe.add(edit);
+        jframe.add(edit, gbc);
 
         // Attach an ActionListener to the button
         edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                newUserName = JOptionPane.showInputDialog(jframe, "Enter your new username: ");
+                newAccountDetails = JOptionPane.showInputDialog(jframe, "Enter your new account details: ");
+                user = new User(newUserName, newAccountDetails);
                 jframe.dispose();
-                ManageAccount manageAccount = new ManageAccount(user);
-                manageAccount.run();
+                HomeScreen home = new HomeScreen(user);
+                home.run();
             }
         });
 
         // Add the button to the frame
 
-        JLabel title = new JLabel("Please select a movie:");
-
-        jframe.setSize(500,500);
+        jframe.setSize(500,250);
         jframe.setVisible(true);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
