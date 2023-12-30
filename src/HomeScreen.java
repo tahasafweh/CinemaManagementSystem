@@ -21,6 +21,10 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
     public void run() {
         List<String> showtimes = new ArrayList<>();
         showtimes.add("1");
+        showtimes.add("12");
+        showtimes.add("13");
+        showtimes.add("14");
+        showtimes.add("15");
         Movie movie1 = new Movie(1, "The Godfather", "Drama", showtimes);
         Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes);
         Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes);
@@ -87,6 +91,9 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
             Movie movie = new Movie(selectedItem.getMovieId(), selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getShowtimes());
             System.out.println("You selected: " + selectedItem);
             jframe.dispose();
+            MovieScreen moviexcreen=new MovieScreen(movie);
+            moviexcreen.run();
+
         }
     }
 }
