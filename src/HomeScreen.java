@@ -52,9 +52,9 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
             public void actionPerformed(ActionEvent e) {
                 jframe.dispose();
                 ManageAccount manageAccount = new ManageAccount(user);
-                manageAccount.run();
-            }
-        });
+                manageAccount.run();}
+        }
+        );
 
         // Add the button to the frame
 
