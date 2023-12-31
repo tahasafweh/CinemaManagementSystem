@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class BookingTnread implements Runnable{
@@ -38,6 +41,14 @@ public class BookingTnread implements Runnable{
             }
             ticket.ticketID = sb.toString();
             JOptionPane.showMessageDialog(jframe, "Your ticket's ID is: " + ticket.ticketID);
+            try {
+                PrintWriter writer = new PrintWriter(new FileOutputStream("ticketID.txt"));
+                writer.println("ID: " + ticket.getTicketID());
+                writer.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
 
             jframe.dispose();
         }                // create a string of all characters
