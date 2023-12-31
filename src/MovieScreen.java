@@ -144,7 +144,7 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
                                            showt.add(selectedItem);
                                            cinema.movies.setShowtimes(showt);
 
-                                           Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,0);
+                                           Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
                                            Movie moviet = new Movie(cinema.movies.getMovieId(), cinema.movies.getTitle(), cinema.movies.getGenre(), cinema.movies.getShowtimes());
                                            Cinema cinemat = new Cinema(cinema.hall, moviet);
                                            Ticketing ticketing = new Ticketing(cinemat,ticket1);
@@ -162,7 +162,7 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
                                          String selectedItem = list.getSelectedValue();
 
 
-                                         Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,0);
+                                         Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
 
                                          Ticketing ticketing = new Ticketing(cinema,ticket1);
                                          ticketing.cancelBooking();

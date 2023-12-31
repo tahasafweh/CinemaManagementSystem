@@ -17,6 +17,7 @@ public class Ticketing extends JFrame {
     }
 
     public void run() {
+
         jframe.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); // padding
@@ -72,33 +73,11 @@ public class Ticketing extends JFrame {
         book.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // create a string of all characters
-                String alphabet = "ABCDEFGH0123456789";
+                BookingTnread book=new BookingTnread(jframe,ticket);
+                Thread th2=new Thread(book);
+                th2.start();
 
-                // create random string builder
-                StringBuilder sb = new StringBuilder();
-
-                // create an object of Random class
-                Random random = new Random();
-
-                // specify length of random string
-                int length = 5;
-
-                for (int i = 0; i < length; i++) {
-                    // generate random index number
-                    int index = random.nextInt(alphabet.length());
-
-                    // get character specified by index
-                    // from the string
-                    char randomChar = alphabet.charAt(index);
-
-                    // append the character to string builder
-                    sb.append(randomChar);
-                }
-                ticketID = sb.toString();
-                JOptionPane.showMessageDialog(jframe, "Your ticket's ID is: " + ticketID);
-                jframe.dispose();
-            }
+                  }
         });
 
         JButton cancel = new JButton("Cancel");
@@ -121,11 +100,9 @@ public class Ticketing extends JFrame {
     }
 
     public void cancelBooking() {
-        userTicketID = JOptionPane.showInputDialog(jframe, "Enter your ticket ID: ");
-        if (userTicketID.isBlank() || !userTicketID.equals(ticketID)) {
-            JOptionPane.showMessageDialog(jframe, "Ticket does not exist");
-        } else {
-            JOptionPane.showMessageDialog(jframe, "Booking cancelled");
-        }
+        CacnelingThread cancel=new CacnelingThread(jframe,ticket);
+        Thread th1=new Thread(cancel);
+        th1.start();
+
     }
 }

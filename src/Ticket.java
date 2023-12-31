@@ -3,9 +3,9 @@ public class Ticket {
     String showtime;
     double ticketPrice;
     String hall;
-    int ticketID;
+    String ticketID;
 
-    public Ticket(int seatNum, String showtime, double ticketPrice, String hall,int ticketID) {
+    public Ticket(int seatNum, String showtime, double ticketPrice, String hall,String ticketID) {
         this.seatNum = seatNum;
         this.showtime = showtime;
         this.ticketPrice = ticketPrice;
@@ -28,7 +28,7 @@ public class Ticket {
         return hall;
     }
 
-    public int getTicketID() {
+    public String getTicketID() {
         return ticketID;
     }
 }
