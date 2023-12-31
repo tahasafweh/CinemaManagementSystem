@@ -130,44 +130,35 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
 
 
         book.addActionListener(new ActionListener() {
-
-                                   @Override
-                                   public void actionPerformed(ActionEvent e) {
-                                       int v = (int)spinner.getValue();
-
-
-                                       String selectedItem = list.getSelectedValue();
-                                       if (selectedItem == null) {
-                                           JOptionPane.showMessageDialog(null, "Please select a time.");
-                                       } else {
-                                           List<String> showt = new ArrayList<>();
-                                           showt.add(selectedItem);
-                                           cinema.movies.setShowtimes(showt);
-
-                                           Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
-                                           Movie moviet = new Movie(cinema.movies.getMovieId(), cinema.movies.getTitle(), cinema.movies.getGenre(), cinema.movies.getShowtimes());
-                                           Cinema cinemat = new Cinema(cinema.hall, moviet);
-                                           Ticketing ticketing = new Ticketing(cinemat,ticket1);
-                                           ticketing.run();
-
-                                       }
-
-                                   }
-                               }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int v = (int)spinner.getValue();
+                String selectedItem = list.getSelectedValue();
+                if (selectedItem == null) {
+                    JOptionPane.showMessageDialog(null, "Please select a time.");
+                } else {
+                    List<String> showt = new ArrayList<>();
+                    showt.add(selectedItem);
+                    cinema.movies.setShowtimes(showt);
+                    Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
+                    Movie moviet = new Movie(cinema.movies.getMovieId(), cinema.movies.getTitle(), cinema.movies.getGenre(), cinema.movies.getShowtimes());
+                    Cinema cinemat = new Cinema(cinema.hall, moviet);
+                    Ticketing ticketing = new Ticketing(cinemat,ticket1);
+                    ticketing.run();
+                }
+            }
+        }
         );
         cancel.addActionListener(new ActionListener() {
-                                     @Override
-                                     public void actionPerformed(ActionEvent e) {
-                                         int v = (int)spinner.getValue();
-                                         String selectedItem = list.getSelectedValue();
-
-
-                                         Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
-
-                                         Ticketing ticketing = new Ticketing(cinema,ticket1);
-                                         ticketing.cancelBooking();
-                                     }
-                                 }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int v = (int)spinner.getValue();
+                String selectedItem = list.getSelectedValue();
+                Ticket ticket1=new Ticket(v,selectedItem,v*5.50,cinema.hall,"");
+                Ticketing ticketing = new Ticketing(cinema,ticket1);
+                ticketing.cancelBooking();
+            }
+        }
         );
         back.addActionListener(new ActionListener() {
             @Override

@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -50,11 +51,51 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         showtimes4.add("15:00");
         showtimes4.add("17:30");
         showtimes4.add("20:00");
+
         Movie movie1 = new Movie(1, "The Godfather", "Drama", showtimes);
         Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes1);
         Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes2);
         Movie movie4 = new Movie(4, "Se7en", "Drama", showtimes3);
         Movie movie5 = new Movie(5, "Leon The Professional", "Action", showtimes4);
+
+        try {
+            PrintWriter writer = new PrintWriter(new FileOutputStream("movies.txt"));
+
+            // Write movie1 properties to file
+            writer.println("ID: " + movie1.getMovieId());
+            writer.println("Title: " + movie1.getTitle());
+            writer.println("Genre: " + movie1.getGenre());
+            writer.println("Showtimes: " + movie1.getShowtimes());
+
+            // Write movie2 properties to file
+            writer.println("ID: " + movie2.getMovieId());
+            writer.println("Title: " + movie2.getTitle());
+            writer.println("Genre: " + movie2.getGenre());
+            writer.println("Showtimes: " + movie2.getShowtimes());
+
+            // Write movie3 properties to file
+            writer.println("ID: " + movie3.getMovieId());
+            writer.println("Title: " + movie3.getTitle());
+            writer.println("Genre: " + movie3.getGenre());
+            writer.println("Showtimes: " + movie3.getShowtimes());
+
+            // Write movie4 properties to file
+            writer.println("ID: " + movie4.getMovieId());
+            writer.println("Title: " + movie4.getTitle());
+            writer.println("Genre: " + movie4.getGenre());
+            writer.println("Showtimes: " + movie4.getShowtimes());
+
+            // Write movie5 properties to file
+            writer.println("ID: " + movie5.getMovieId());
+            writer.println("Title: " + movie5.getTitle());
+            writer.println("Genre: " + movie5.getGenre());
+            writer.println("Showtimes: " + movie5.getShowtimes());
+
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         Cinema cinema = new Cinema("Hall 1", movie1);
         Cinema cinema1 = new Cinema("Hall 2", movie2);
@@ -74,6 +115,7 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
 
         // Create the "Manage Account" button
         JButton manageAccountButton = new JButton("Manage Account");
+        manageAccountButton.setFont(new Font("Arial", Font.BOLD,25));
 
         // Set bounds for the button (x, y, width, height)
         manageAccountButton.setBounds(50, 50, 200, 30);
@@ -83,13 +125,13 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
 
         // Attach an ActionListener to the button
         manageAccountButton.addActionListener(new ActionListener() {
-                                                  @Override
-                                                  public void actionPerformed(ActionEvent e) {
-                                                      jframe.dispose();
-                                                      ManageAccount manageAccount = new ManageAccount(user);
-                                                      manageAccount.run();
-                                                  }
-                                              }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jframe.dispose();
+                ManageAccount manageAccount = new ManageAccount(user);
+                manageAccount.run();
+            }
+        }
         );
 
         // Add the button to the frame
@@ -111,7 +153,7 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
 
         // Set the horizontal alignment to center
         renderer.setHorizontalAlignment(JLabel.CENTER);
-        list.setBorder(new EmptyBorder(20, 0, 20, 0));
+        list.setBorder(new EmptyBorder(20, 0, 5, 0));
 
         // Set the size of the frame
         jframe.setSize(700, 350);
@@ -126,13 +168,10 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         if (!e.getValueIsAdjusting()) {
             Cinema selectedItem = list.getSelectedValue();
             Movie movie = new Movie(selectedItem.movies.getMovieId(), selectedItem.movies.getTitle(), selectedItem.movies.getGenre(), selectedItem.movies.getShowtimes());
-            System.out.println("You selected: " + list);
             Cinema cinema = new Cinema(selectedItem.hall, movie);
-
             jframe.dispose();
-            MovieScreen moviexcreen = new MovieScreen(cinema,user);
-            moviexcreen.run();
-
+            MovieScreen moviescreen = new MovieScreen(cinema,user);
+            moviescreen.run();
         }
     }
 }

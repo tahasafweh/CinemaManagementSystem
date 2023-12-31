@@ -77,7 +77,7 @@ public class Ticketing extends JFrame {
                 Thread th2=new Thread(book);
                 th2.start();
 
-                  }
+            }
         });
 
         JButton cancel = new JButton("Cancel");
