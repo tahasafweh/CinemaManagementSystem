@@ -9,33 +9,68 @@ import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
 
-public class HomeScreen extends JFrame implements ListSelectionListener{
+public class HomeScreen extends JFrame implements ListSelectionListener {
 
     JFrame jframe = new JFrame("Home Screen");
     User user;
-    private JList<Movie> list;
+    private JList<Cinema> list;
 
     public HomeScreen(User user) {
         this.user = user;
     }
+
     public void run() {
         List<String> showtimes = new ArrayList<>();
-        showtimes.add("1");
-        showtimes.add("12");
-        showtimes.add("13");
-        showtimes.add("14");
-        showtimes.add("15");
+        showtimes.add("10:00");
+        showtimes.add("12:30");
+        showtimes.add("15:00");
+        showtimes.add("17:30");
+        showtimes.add("20:00");
+        List<String> showtimes1 = new ArrayList<>();
+        showtimes1.add("10:00");
+        showtimes1.add("12:30");
+        showtimes1.add("15:00");
+        showtimes1.add("17:30");
+        showtimes1.add("20:00");
+        List<String> showtimes2 = new ArrayList<>();
+        showtimes2.add("10:00");
+        showtimes2.add("12:30");
+        showtimes2.add("15:00");
+        showtimes2.add("17:30");
+        showtimes2.add("20:00");
+        List<String> showtimes3 = new ArrayList<>();
+        showtimes3.add("10:00");
+        showtimes3.add("12:30");
+        showtimes3.add("15:00");
+        showtimes3.add("17:30");
+        showtimes3.add("20:00");
+        List<String> showtimes4 = new ArrayList<>();
+        showtimes4.add("10:00");
+        showtimes4.add("12:30");
+        showtimes4.add("15:00");
+        showtimes4.add("17:30");
+        showtimes4.add("20:00");
         Movie movie1 = new Movie(1, "The Godfather", "Drama", showtimes);
-        Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes);
-        Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes);
-        Movie movie4 = new Movie(4, "Se7en", "Drama", showtimes);
-        Movie movie5 = new Movie(5, "Leon The Professional", "Action", showtimes);
-        List<Movie> movies = new ArrayList<>();
-        movies.add(movie1);
-        movies.add(movie2);
-        movies.add(movie3);
-        movies.add(movie4);
-        movies.add(movie5);
+        Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes1);
+        Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes2);
+        Movie movie4 = new Movie(4, "Se7en", "Drama", showtimes3);
+        Movie movie5 = new Movie(5, "Leon The Professional", "Action", showtimes4);
+
+        Cinema cinema = new Cinema("Hall 1", movie1);
+        Cinema cinema1 = new Cinema("Hall 2", movie2);
+        Cinema cinema2 = new Cinema("Hall 3", movie3);
+        Cinema cinema3 = new Cinema("Hall 4", movie4);
+        Cinema cinema4 = new Cinema("Hall 5", movie5);
+
+        List<Cinema> cinemas = new ArrayList<>();
+        cinemas.add(cinema);
+        cinemas.add(cinema1);
+        cinemas.add(cinema2);
+        cinemas.add(cinema3);
+        cinemas.add(cinema4);
+
+
+
 
         // Create the "Manage Account" button
         JButton manageAccountButton = new JButton("Manage Account");
@@ -48,12 +83,13 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
 
         // Attach an ActionListener to the button
         manageAccountButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jframe.dispose();
-                ManageAccount manageAccount = new ManageAccount(user);
-                manageAccount.run();}
-        }
+                                                  @Override
+                                                  public void actionPerformed(ActionEvent e) {
+                                                      jframe.dispose();
+                                                      ManageAccount manageAccount = new ManageAccount(user);
+                                                      manageAccount.run();
+                                                  }
+                                              }
         );
 
         // Add the button to the frame
@@ -66,7 +102,7 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
 
         // Add the label to the frame
         jframe.add(titlePanel, BorderLayout.NORTH);
-        list = new JList<>(movies.toArray(new Movie[0]));
+        list = new JList<>(cinemas.toArray(new Cinema[0]));
         list.addListSelectionListener(this);
         list.setFont(new Font("Arial", Font.PLAIN, 25));
         jframe.add(new JScrollPane(list));
@@ -84,14 +120,17 @@ public class HomeScreen extends JFrame implements ListSelectionListener{
         jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
-            Movie selectedItem = list.getSelectedValue();
-            Movie movie = new Movie(selectedItem.getMovieId(), selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getShowtimes());
-            System.out.println("You selected: " + selectedItem);
+            Cinema selectedItem = list.getSelectedValue();
+            Movie movie = new Movie(selectedItem.movies.getMovieId(), selectedItem.movies.getTitle(), selectedItem.movies.getGenre(), selectedItem.movies.getShowtimes());
+            System.out.println("You selected: " + list);
+            Cinema cinema = new Cinema(selectedItem.hall, movie);
+
             jframe.dispose();
-            MovieScreen moviexcreen=new MovieScreen(movie);
+            MovieScreen moviexcreen = new MovieScreen(cinema,user);
             moviexcreen.run();
 
         }

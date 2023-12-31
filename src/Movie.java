@@ -4,6 +4,11 @@ class Movie {
     private int movieId;
     private String title;
     private String genre;
+
+    public void setShowtimes(List<String> showtimes) {
+        this.showtimes = showtimes;
+    }
+
     private List<String> showtimes;
 
     public Movie(int movieId, String title, String genre, List<String> showtimes) {

@@ -4,11 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Ticketing extends JFrame{
+public class Ticketing extends JFrame {
     JFrame jframe = new JFrame("Book a ticket");
     String ticketID;
+    Cinema cinema;
     String userTicketID;
-    public void run(){
+    Ticket ticket;
+
+    public Ticketing(Cinema cinema,Ticket ticket) {
+        this.cinema = cinema;
+        this.ticket=ticket;
+    }
+
+    public void run() {
         jframe.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); // padding
@@ -19,7 +27,8 @@ public class Ticketing extends JFrame{
         gbc.gridy = 0;
         jframe.add(time, gbc);
 
-        JLabel selectedTime = new JLabel("11:30");
+
+        JLabel selectedTime = new JLabel(cinema.movies.getShowtimes().get(0));
         selectedTime.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridy = 1;
         jframe.add(selectedTime, gbc);
@@ -27,9 +36,9 @@ public class Ticketing extends JFrame{
         JLabel hall = new JLabel("Hall:");
         hall.setFont(new Font("Arial", Font.BOLD, 25));
         gbc.gridy = 2;
-        jframe.add(hall,gbc);
+        jframe.add(hall, gbc);
 
-        JLabel hallName = new JLabel("Hall 1");
+        JLabel hallName = new JLabel(cinema.hall);
         hallName.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridy = 3;
         jframe.add(hallName, gbc);
@@ -39,7 +48,7 @@ public class Ticketing extends JFrame{
         gbc.gridy = 4;
         jframe.add(seat, gbc);
 
-        JLabel selectedSeat = new JLabel("2");
+        JLabel selectedSeat = new JLabel(String.valueOf(ticket.seatNum));
         selectedSeat.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridy = 5;
         jframe.add(selectedSeat, gbc);
@@ -49,7 +58,7 @@ public class Ticketing extends JFrame{
         gbc.gridy = 6;
         jframe.add(ticketPrice, gbc);
 
-        JLabel price = new JLabel("$11.50");
+        JLabel price = new JLabel("$"+ticket.seatNum*5.50);
         price.setFont(new Font("Arial", Font.PLAIN, 20));
         gbc.gridy = 7;
         jframe.add(price, gbc);
@@ -75,7 +84,7 @@ public class Ticketing extends JFrame{
                 // specify length of random string
                 int length = 5;
 
-                for(int i = 0; i < length; i++) {
+                for (int i = 0; i < length; i++) {
                     // generate random index number
                     int index = random.nextInt(alphabet.length());
 
@@ -87,7 +96,7 @@ public class Ticketing extends JFrame{
                     sb.append(randomChar);
                 }
                 ticketID = sb.toString();
-                JOptionPane.showMessageDialog(jframe, "Your ticket's ID is: "+ticketID);
+                JOptionPane.showMessageDialog(jframe, "Your ticket's ID is: " + ticketID);
                 jframe.dispose();
             }
         });
@@ -105,8 +114,7 @@ public class Ticketing extends JFrame{
         });
 
 
-
-        jframe.setSize(300,500);
+        jframe.setSize(300, 500);
         jframe.pack();
         jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,7 +122,7 @@ public class Ticketing extends JFrame{
 
     public void cancelBooking() {
         userTicketID = JOptionPane.showInputDialog(jframe, "Enter your ticket ID: ");
-        if (userTicketID.isBlank() || !userTicketID.equals(ticketID)){
+        if (userTicketID.isBlank() || !userTicketID.equals(ticketID)) {
             JOptionPane.showMessageDialog(jframe, "Ticket does not exist");
         } else {
             JOptionPane.showMessageDialog(jframe, "Booking cancelled");
