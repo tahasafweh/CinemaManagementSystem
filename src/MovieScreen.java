@@ -20,17 +20,15 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
     }
 
     public void run() {
-
-
         Container contentPane = jframe.getContentPane();
         SpringLayout layout = new SpringLayout();
         contentPane.setLayout(layout);
-        JLabel title = new JLabel("Select a time");
-        JLabel hall = new JLabel("Select a hall");
-        JLabel genra = new JLabel("Select a genra");
-        JLabel seats = new JLabel("Select a seats");
+
+        JLabel title = new JLabel("Select a time: ");
+        JLabel hall = new JLabel("Displaying in hall: ");
+        JLabel seats = new JLabel("Select your seat number: ");
         JButton book = new JButton("Book");
-        JButton cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Cancel booking");
         JLabel timeLabel = new JLabel(movie.toString());
 
         jframe.setSize(600, 300);
@@ -39,18 +37,13 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         JList<String> list = new JList<>(showtimes.toArray(new String[0]));
         list.addListSelectionListener(this);
         timeLabel.setFont(new Font("Arial", Font.BOLD, 17));
-        JButton btn1 = new JButton("1");
-        JButton btn2 = new JButton("2");
-        btn1.setBounds(0, 0, 50, 50);
-        btn2.setBounds(0, 0, 50, 50);
-        jframe.add(btn1);
-        jframe.add(btn2);
+        jframe.add(book);
+        jframe.add(cancel);
         jframe.add(timeLabel);
         jframe.add(list);
         jframe.add(title);
         jframe.add(hall);
         jframe.add(seats);
-        layout.se
 
         layout.putConstraint(SpringLayout.WEST, timeLabel,
                 210, SpringLayout.WEST, contentPane);
@@ -82,35 +75,38 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         layout.putConstraint(SpringLayout.NORTH, seats,
                 60, SpringLayout.NORTH, contentPane);
 
-        layout.putConstraint(SpringLayout.WEST, btn1,
+        layout.putConstraint(SpringLayout.WEST, book,
                 350, SpringLayout.WEST, contentPane);
-        layout.putConstraint(SpringLayout.EAST, btn1,
+        layout.putConstraint(SpringLayout.EAST, book,
                 -150, SpringLayout.EAST, contentPane);
-        layout.putConstraint(SpringLayout.NORTH, btn1,
+        layout.putConstraint(SpringLayout.NORTH, book,
                 200, SpringLayout.NORTH, contentPane);
 
-        layout.putConstraint(SpringLayout.WEST, btn2,
+        layout.putConstraint(SpringLayout.WEST, cancel,
                 450, SpringLayout.WEST, contentPane);
-        layout.putConstraint(SpringLayout.EAST, btn2,
+        layout.putConstraint(SpringLayout.EAST, cancel,
                 -100, SpringLayout.EAST, contentPane);
-        layout.putConstraint(SpringLayout.NORTH, btn2,
+        layout.putConstraint(SpringLayout.NORTH, cancel,
                 200, SpringLayout.NORTH, contentPane);
 
 
-        btn1.addActionListener(new ActionListener() {
-                                   @Override
-                                   public void actionPerformed(ActionEvent e) {
-
-                                   }
-                               }
+        book.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ticketing ticketing = new Ticketing();
+                ticketing.run();
+            }
+        }
         );
-        btn2.addActionListener(new ActionListener() {
-                                   @Override
-                                   public void actionPerformed(ActionEvent e) {
-
-                                   }
-                               }
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ticketing ticketing = new Ticketing();
+                ticketing.cancelBooking();
+            }
+        }
         );
+
 
 
         // Add the list to the frame
