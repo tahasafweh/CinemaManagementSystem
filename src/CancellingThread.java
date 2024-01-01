@@ -2,12 +2,12 @@ import javax.swing.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class CacnelingThread implements Runnable {
+public class CancellingThread implements Runnable {
     JFrame jframe;
     Ticket ticket;
 
 
-    public CacnelingThread(JFrame jframe, Ticket ticket) {
+    public CancellingThread(JFrame jframe, Ticket ticket) {
         this.jframe = jframe;
         this.ticket = ticket;
     }

@@ -29,6 +29,7 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         JLabel hall = new JLabel("Displaying in: ");
         JLabel hallid = new JLabel(cinema.hall);
         JLabel seats = new JLabel("Select how many seats you want: ");
+        JLabel avseats = new JLabel("Available seats:\n"+350);
         JButton book = new JButton("Book");
         JButton cancel = new JButton("Cancel booking");
         JLabel moviename = new JLabel(cinema.movies.toString());
@@ -40,6 +41,7 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         cancel.setFont(new Font("Arial", Font.BOLD, 14));
         title.setFont(new Font("Arial", Font.BOLD, 13));
         seats.setFont(new Font("Arial", Font.BOLD, 13));
+        avseats.setFont(new Font("Arial", Font.BOLD, 13));
         hall.setFont(new Font("Arial", Font.BOLD, 13));
         hallid.setFont(new Font("Arial", Font.BOLD, 13));
         book.setSize(100, 50);
@@ -58,6 +60,7 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         jframe.add(title);
         jframe.add(hall);
         jframe.add(seats);
+        jframe.add(avseats);
         jframe.add(hallid);
         jframe.add(back);
         jframe.add(spinner);
@@ -97,6 +100,11 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
                 430, SpringLayout.WEST, contentPane);
         layout.putConstraint(SpringLayout.NORTH, spinner,
                 90, SpringLayout.NORTH, contentPane);
+
+        layout.putConstraint(SpringLayout.WEST, avseats,
+                390, SpringLayout.WEST, contentPane);
+        layout.putConstraint(SpringLayout.NORTH, avseats,
+                140, SpringLayout.NORTH, contentPane);
 
         layout.putConstraint(SpringLayout.WEST, book,
                 370, SpringLayout.WEST, contentPane);

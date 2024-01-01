@@ -97,7 +97,7 @@ public class Ticketing extends JFrame {
     }
 
     public void cancelBooking() {
-        CacnelingThread cancel=new CacnelingThread(jframe,ticket);
+        CancellingThread cancel=new CancellingThread(jframe,ticket);
         Thread th1=new Thread(cancel);
         th1.start();
 
