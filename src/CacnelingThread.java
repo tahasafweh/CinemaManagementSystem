@@ -31,7 +31,6 @@ public class CacnelingThread implements Runnable {
 
 
                 if (line.equals("ID: " + userTicketID)) {
-                    System.out.println("helllllo");
 
 
                     while (scanner.hasNextLine()) {
@@ -39,7 +38,6 @@ public class CacnelingThread implements Runnable {
 
                         if (!line.equals("ID: " + userTicketID)) {
                             writer.write(line + "\n");
-                            System.out.println("helllllo");
                         }
                     }
                     JOptionPane.showMessageDialog(jframe, "This ticket has been cancelled");
