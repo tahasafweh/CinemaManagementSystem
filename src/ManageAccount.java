@@ -14,7 +14,7 @@ public class ManageAccount extends JFrame{
     public void run() {
         jframe.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // padding
+        gbc.insets = new Insets(10, 10, 10, 10);
         JLabel username = new JLabel("Username");
         username.setFont(new Font("Arial", Font.BOLD, 25));
         gbc.gridx = 0;
@@ -39,7 +39,6 @@ public class ManageAccount extends JFrame{
 
         jframe.add(edit, gbc);
 
-        // Attach an ActionListener to the button
         edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +64,6 @@ public class ManageAccount extends JFrame{
                 homeScreen.run();
             }
         });
-        // Add the button to the frame
 
         jframe.setSize(500,400);
         jframe.setVisible(true);

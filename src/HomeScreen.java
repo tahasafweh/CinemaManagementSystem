@@ -27,65 +27,37 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         showtimes.add("15:00");
         showtimes.add("17:30");
         showtimes.add("20:00");
-        List<String> showtimes1 = new ArrayList<>();
-        showtimes1.add("10:00");
-        showtimes1.add("12:30");
-        showtimes1.add("15:00");
-        showtimes1.add("17:30");
-        showtimes1.add("20:00");
-        List<String> showtimes2 = new ArrayList<>();
-        showtimes2.add("10:00");
-        showtimes2.add("12:30");
-        showtimes2.add("15:00");
-        showtimes2.add("17:30");
-        showtimes2.add("20:00");
-        List<String> showtimes3 = new ArrayList<>();
-        showtimes3.add("10:00");
-        showtimes3.add("12:30");
-        showtimes3.add("15:00");
-        showtimes3.add("17:30");
-        showtimes3.add("20:00");
-        List<String> showtimes4 = new ArrayList<>();
-        showtimes4.add("10:00");
-        showtimes4.add("12:30");
-        showtimes4.add("15:00");
-        showtimes4.add("17:30");
-        showtimes4.add("20:00");
+
 
         Movie movie1 = new Movie(1, "The Godfather", "Drama", showtimes);
-        Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes1);
-        Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes2);
-        Movie movie4 = new Movie(4, "Se7en", "Drama", showtimes3);
-        Movie movie5 = new Movie(5, "Leon The Professional", "Action", showtimes4);
+        Movie movie2 = new Movie(2, "The Avengers", "Action", showtimes);
+        Movie movie3 = new Movie(3, "Chucky", "Horror", showtimes);
+        Movie movie4 = new Movie(4, "Se7en", "Drama", showtimes);
+        Movie movie5 = new Movie(5, "Leon The Professional", "Action", showtimes);
 
         try {
             PrintWriter writer = new PrintWriter(new FileOutputStream("movies.txt"));
 
-            // Write movie1 properties to file
             writer.println("ID: " + movie1.getMovieId());
             writer.println("Title: " + movie1.getTitle());
             writer.println("Genre: " + movie1.getGenre());
             writer.println("Showtimes: " + movie1.getShowtimes());
 
-            // Write movie2 properties to file
             writer.println("ID: " + movie2.getMovieId());
             writer.println("Title: " + movie2.getTitle());
             writer.println("Genre: " + movie2.getGenre());
             writer.println("Showtimes: " + movie2.getShowtimes());
 
-            // Write movie3 properties to file
             writer.println("ID: " + movie3.getMovieId());
             writer.println("Title: " + movie3.getTitle());
             writer.println("Genre: " + movie3.getGenre());
             writer.println("Showtimes: " + movie3.getShowtimes());
 
-            // Write movie4 properties to file
             writer.println("ID: " + movie4.getMovieId());
             writer.println("Title: " + movie4.getTitle());
             writer.println("Genre: " + movie4.getGenre());
             writer.println("Showtimes: " + movie4.getShowtimes());
 
-            // Write movie5 properties to file
             writer.println("ID: " + movie5.getMovieId());
             writer.println("Title: " + movie5.getTitle());
             writer.println("Genre: " + movie5.getGenre());
@@ -113,17 +85,14 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
 
 
 
-        // Create the "Manage Account" button
         JButton manageAccountButton = new JButton("Manage Account");
         manageAccountButton.setFont(new Font("Arial", Font.BOLD,25));
 
-        // Set bounds for the button (x, y, width, height)
         manageAccountButton.setBounds(50, 50, 200, 30);
 
         jframe.setLayout(new BorderLayout());
         jframe.add(manageAccountButton, BorderLayout.SOUTH);
 
-        // Attach an ActionListener to the button
         manageAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,7 +103,6 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         }
         );
 
-        // Add the button to the frame
 
         JLabel title = new JLabel("Please select a movie:");
 
@@ -142,7 +110,6 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         title.setFont(new Font("Arial", Font.BOLD, 40));
         titlePanel.add(title);
 
-        // Add the label to the frame
         jframe.add(titlePanel, BorderLayout.NORTH);
         list = new JList<>(cinemas.toArray(new Cinema[0]));
         list.addListSelectionListener(this);
@@ -151,7 +118,6 @@ public class HomeScreen extends JFrame implements ListSelectionListener {
         jframe.add(list);
         DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
 
-        // Set the horizontal alignment to center
         renderer.setHorizontalAlignment(JLabel.CENTER);
         list.setBorder(new EmptyBorder(20, 0, 5, 0));
 

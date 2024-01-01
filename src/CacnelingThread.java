@@ -30,7 +30,6 @@ public class CacnelingThread implements Runnable {
                 String line = scanner.nextLine();
 
 
-                // compare the line with the ID
                 if (line.equals("ID: " + userTicketID)) {
                     System.out.println("helllllo");
 
@@ -57,7 +56,6 @@ public class CacnelingThread implements Runnable {
             file.delete();
 
 
-// rename the temporary file to the original file
             File temp = new File("temp.txt");
             temp.renameTo(file);
 

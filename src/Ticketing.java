@@ -2,13 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class Ticketing extends JFrame {
     JFrame jframe = new JFrame("Book a ticket");
-    String ticketID;
     Cinema cinema;
-    String userTicketID;
     Ticket ticket;
 
     public Ticketing(Cinema cinema,Ticket ticket) {
@@ -20,7 +17,7 @@ public class Ticketing extends JFrame {
 
         jframe.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // padding
+        gbc.insets = new Insets(10, 10, 10, 10);
 
         JLabel time = new JLabel("Selected time:");
         time.setFont(new Font("Arial", Font.BOLD, 25));
@@ -69,11 +66,11 @@ public class Ticketing extends JFrame {
         gbc.gridy = 8;
         jframe.add(book, gbc);
 
-        // Attach an ActionListener to the button
+
         book.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BookingTnread book=new BookingTnread(jframe,ticket);
+                BookingThread book=new BookingThread(jframe,ticket);
                 Thread th2=new Thread(book);
                 th2.start();
 

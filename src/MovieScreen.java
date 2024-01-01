@@ -12,10 +12,7 @@ import java.util.List;
 
 public class MovieScreen extends JFrame implements ListSelectionListener {
     JFrame jframe = new JFrame("Movie Screen");
-    Movie movie;
-    int value;
     Cinema cinema;
-    Ticket ticket;
     User user;
 
     public MovieScreen(Cinema cinema, User user) {
@@ -171,9 +168,6 @@ public class MovieScreen extends JFrame implements ListSelectionListener {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        // Add the list to the frame
-//
-//
     }
 
 
